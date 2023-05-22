@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header">
+  <meta charset="UTF-8">
+  <title>Formulario Curso</title>
+</head>
+<body>
+<nav th:replace="layouts.html :: navbar"></nav>
+<h1>Formulario Curso</h1>
+<form action="#" th:action="@{/afegirEstudiant}" th:object="${estudiant}" method="post">
+  <label>Nom:</label>
+  <input type="text" th:field="*{estudiantNom}" />
+
+  <label>Cognom:</label>
+  <input type="text" th:field="*{estudiantCognom}" />
+
+  <label>Curs:</label>
+  <select th:object="${curs}" multiple="multiple">
+    <option value="">Selecciona un curs</option>
+    <option th:each="cursos : ${curs}" th:value="${cursos.cursId}" th:text="${cursos.titolCurs}" />
+  </select>
+  <br>
+  <input type="submit" value="Guardar" />
+</form>
+<footer th:replace="layouts.html :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header">
+    <meta charset="UTF-8">
+    <title>Llista d'estudiants</title>
+</head>
+<body>
+<nav th:replace="layouts.html :: navbar"></nav>
+<h1>Llista d'estudiants</h1>
+<a class="btn btn-primary btn-sm mb-3" th:href="@{afegirEstudiant}">Afegir estudiant</a>
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Cognom</th>
+        <th>Curs</th>
+    </tr>
+    </thead>
+    <tr th:each="estudiant : ${estudiant}">
+        <td th:text="${estudiant.estudiantNom}"/>
+        <td th:text="${estudiant.estudiantCognom}"/>
+        <td>
+            <span th:each="curs : ${estudiant.curs}" th:text="${curs}" th:if="${not #strings.isEmpty(estudiant.curs)}">
+            </span>
+        </td>
+    </tr>
+</table>
+<footer th:replace="layouts.html :: footer"></footer>
+</body>
+</html>
